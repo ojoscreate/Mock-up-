@@ -3,7 +3,7 @@ name: Trigger EAS Build
 on:
   push:
     branches:
-      - main # Triggers whenever code is pushed to main
+      - main
 
 jobs:
   build:
@@ -13,12 +13,11 @@ jobs:
     steps:
       - name: 🏗 Checkout Repository
         uses: actions/checkout@v4
-        
+
       - name: 🏗 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # Updated to Node 22 to fix the warning too!
-          #cache: 'npm' # Change to yarn/bun if you use those
+          node-version: 22
 
       - name: 🏗 Setup Expo & EAS CLI
         uses: expo/expo-github-action@v8
@@ -27,11 +26,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: 🚀 Run EAS Build (Android)
         run: eas build --platform android --profile preview --non-interactive
-
-      # Uncomment below to trigger iOS build as well:
-      # - name: 🚀 Run EAS Build (iOS)
-      #   run: eas build --platform ios --profile preview --non-interactive
