@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22  # Updated to Node 22 to fix the warning too!
-          cache: 'npm' # Change to yarn/bun if you use those
+          #cache: 'npm' # Change to yarn/bun if you use those
 
       - name: 🏗 Setup Expo & EAS CLI
         uses: expo/expo-github-action@v8
